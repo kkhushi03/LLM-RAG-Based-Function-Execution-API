@@ -1,39 +1,25 @@
-from fastapi import FastAPI, HTTPException
-from vector_store import retrieve_function
-from code_generator import generate_code
-import automation_functions as af
+from fastapi import FastAPI
+import json
 
 app = FastAPI()
 
-@app.get("/")
-def home():
-    return {"message": "LLM + RAG Function Execution API is running!"}
+function_registry = {
+    "open_chrome": "from automation_functions import open_chrome\n\ndef main():\n    try:\n        print(\"Execution successful.\")\n    except Exception as e:\n        print(f\"Error executing function: {e}\")\n\nif __name__ == \"__main__\":\n    main()\n"
+}
 
 @app.post("/execute")
-def execute_function(request: dict):
-    user_prompt = request.get("prompt", "").strip()
+async def execute(request: dict):
+    prompt = request.get("prompt", "").lower()
+    
+    # Map prompt to function name
+    if "chrome" in prompt:
+        function_name = "open_chrome"
+    else:
+        return {"error": "Function not found"}
 
-    if not user_prompt:
-        raise HTTPException(status_code=400, detail="Prompt is required.")
-
-    function_name = retrieve_function(user_prompt)
-
-    if not function_name or function_name not in af.FUNCTIONS:
-        raise HTTPException(status_code=404, detail="Function not found.")
-
-    generated_code = generate_code(function_name)
-    try:
-        result = af.FUNCTIONS[function_name]() if callable(af.FUNCTIONS[function_name]) else "Function executed"
-    except Exception as e:
-        result = str(e)
-
-    return {
-        "function": function_name,
-        "code": generated_code,
-        "execution_result": result
-    }
-
-# Run the API
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # Retrieve function code (DO NOT EXECUTE)
+    function_code = function_registry.get(function_name)
+    if function_code:
+        return {"function": function_name, "code": function_code, "output": None}
+    else:
+        return {"error": "Function not available"}
