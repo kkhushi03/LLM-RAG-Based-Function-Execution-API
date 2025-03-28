@@ -5,6 +5,10 @@ import automation_functions as af
 
 app = FastAPI()
 
+@app.get("/")
+def home():
+    return {"message": "LLM + RAG Function Execution API is running!"}
+
 @app.post("/execute")
 def execute_function(request: dict):
     user_prompt = request.get("prompt", "").strip()
