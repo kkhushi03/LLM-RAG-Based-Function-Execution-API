@@ -30,3 +30,7 @@ FUNCTIONS = {
     "get_ram_usage": get_ram_usage,
     "run_shell_command": run_shell_command
 }
+
+if __name__ == "__main__":
+    open_calculator()  # Should open the calculator
+    print(get_cpu_usage())  # Should print CPU usage
