@@ -12,7 +12,7 @@ AI-Powered Function Execution: LLM processes natural language inputs and generat
 
 FastAPI-based REST API: Provides a robust and scalable API with well-defined endpoints for automation task execution.
 
-##🚀 API Endpoints
+## 🚀 API Endpoints
 
 1️⃣ Execute Automation Function
 
