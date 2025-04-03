@@ -2,13 +2,13 @@
 
 ## 📌 Project Overview
 
-This project is a FastAPI-based automation API that utilizes LLM (Large Language Model) + RAG (Retrieval-Augmented Generation) to dynamically retrieve and execute predefined system automation functions. Users can send natural language prompts, and the system intelligently maps them to corresponding automation functions, generating and executing Python code in real-time.
+This project is a FastAPI-based automation API that utilizes LLM (Large Language Model) + RAG (Retrieval-Augmented Generation) to retrieve and execute predefined system automation functions dynamically. Users can send natural language prompts, and the system intelligently maps them to corresponding automation functions, generating and executing Python code in real time.
 
 ## ✨ Features
 
 Dynamic Function Retrieval: Uses ChromaDB as a vector store to match user prompts with predefined automation functions.
 
-AI-Powered Function Execution: LLM processes natural language inputs and generates executable Python code for the mapped function.
+AI-powered function Execution: LLM processes natural language inputs and generates executable Python code for the mapped function.
 
 FastAPI-based REST API: Provides a robust and scalable API with well-defined endpoints for automation task execution.
 
@@ -20,30 +20,34 @@ Endpoint: POST /execute
 
 Request Body:
 
-{ "prompt": "Open Chrome browser" }
+```{ "prompt": "Open Chrome browser" }```
 
 Response:
 
+```
 {
   "function": "open_chrome",
   "code": "from automation_functions import open_chrome\n\ndef main():\n    try:\n        open_chrome()\n        print(\"Execution successful.\")\n    except Exception as e:\n        print(f\"Error executing function: {e}\")\n\nif __name__ == \"__main__\":\n    main()",
   "output": null
 }
+```
 
 ## 🛠️ Setup & Installation
 
 1. Clone the Repository
 
+```
 git clone https://github.com/your-repo/llm-rag-function-api.git
 cd llm-rag-function-api
+```
 
 2. Install Dependencies
 
-pip install -r requirements.txt
+```pip install -r requirements.txt```
 
 3. Run the API Server
 
-uvicorn app:app --host 127.0.0.1 --port 8000
+```uvicorn app:app --host 127.0.0.1 --port 8000```
 
 ## 🔧 Technologies Used
 
