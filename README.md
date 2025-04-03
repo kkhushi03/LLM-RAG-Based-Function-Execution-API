@@ -1,10 +1,10 @@
-LLM + RAG-Based Function Execution API
+# LLM + RAG-Based Function Execution API
 
-📌 Project Overview
+## 📌 Project Overview
 
 This project is a FastAPI-based automation API that utilizes LLM (Large Language Model) + RAG (Retrieval-Augmented Generation) to dynamically retrieve and execute predefined system automation functions. Users can send natural language prompts, and the system intelligently maps them to corresponding automation functions, generating and executing Python code in real-time.
 
-✨ Features
+## ✨ Features
 
 Dynamic Function Retrieval: Uses ChromaDB as a vector store to match user prompts with predefined automation functions.
 
@@ -12,7 +12,7 @@ AI-Powered Function Execution: LLM processes natural language inputs and generat
 
 FastAPI-based REST API: Provides a robust and scalable API with well-defined endpoints for automation task execution.
 
-🚀 API Endpoints
+##🚀 API Endpoints
 
 1️⃣ Execute Automation Function
 
@@ -30,7 +30,7 @@ Response:
   "output": null
 }
 
-🛠️ Setup & Installation
+## 🛠️ Setup & Installation
 
 1. Clone the Repository
 
@@ -45,7 +45,7 @@ pip install -r requirements.txt
 
 uvicorn app:app --host 127.0.0.1 --port 8000
 
-🔧 Technologies Used
+## 🔧 Technologies Used
 
 FastAPI (for API development)
 
@@ -55,7 +55,7 @@ Hugging Face Transformers (for embedding generation and LLM inference)
 
 Python OS & Webbrowser Modules (for executing system automation tasks)
 
-🔥 Future Enhancements
+## 🔥 Future Enhancements
 
 Add support for custom user-defined functions.
 
