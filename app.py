@@ -1,8 +1,15 @@
 from fastapi import FastAPI
 import json
+import uvicorn
 
 app = FastAPI()
 
+# ✅ This route will handle GET requests to the root URL
+@app.get("/")
+def root():
+    return {"message": "LLM RAG Function API is running!"}
+
+# Your function registry and POST /execute logic
 function_registry = {
     "open_chrome": "from automation_functions import open_chrome\n\ndef main():\n    try:\n        print(\"Execution successful.\")\n    except Exception as e:\n        print(f\"Error executing function: {e}\")\n\nif __name__ == \"__main__\":\n    main()\n"
 }
